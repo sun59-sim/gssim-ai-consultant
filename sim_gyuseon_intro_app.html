@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>심규선 | AI 경영 컨설턴트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a3056;
+    --navy-light: #254278;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --white: #ffffff;
+    --gray: #f4f6fa;
+    --text: #222831;
+    --text-sub: #6b7a99;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--gray);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(150deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 56px 24px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(201,168,76,.13);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(201,168,76,.09);
+  }
+
+  .photo-wrap {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    margin: 0 auto 20px;
+    overflow: hidden;
+    position: relative; z-index: 1;
+    box-shadow: 0 4px 24px rgba(0,0,0,.35);
+  }
+  .photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,.18);
+    border: 1px solid rgba(201,168,76,.5);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    position: relative; z-index: 1;
+  }
+
+  .hero h1 {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -.02em;
+    position: relative; z-index: 1;
+    margin-bottom: 4px;
+  }
+  .hero h1 span { color: var(--gold-light); }
+
+  .hero-title {
+    color: rgba(255,255,255,.7);
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+
+  .hero-tagline {
+    background: rgba(255,255,255,.08);
+    border-left: 3px solid var(--gold);
+    padding: 12px 18px;
+    border-radius: 0 10px 10px 0;
+    margin: 0 auto;
+    max-width: 340px;
+    position: relative; z-index: 1;
+  }
+  .hero-tagline p {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: 36px 20px; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px; height: 20px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  /* ── CAREER HIGHLIGHTS ── */
+  .career-section { background: var(--white); }
+
+  .career-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .career-card {
+    background: var(--gray);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    border-top: 3px solid var(--navy);
+  }
+  .career-card.gold-top { border-top-color: var(--gold); }
+  .career-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .career-card .label {
+    font-size: 12px;
+    color: var(--text-sub);
+    margin-bottom: 4px;
+  }
+  .career-card .value {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  .career-desc {
+    margin-top: 16px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border-radius: 12px;
+    padding: 18px;
+    color: rgba(255,255,255,.9);
+    font-size: 13.5px;
+    line-height: 1.8;
+  }
+  .career-desc strong { color: var(--gold-light); }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--gray); }
+
+  .service-list { display: flex; flex-direction: column; gap: 12px; }
+  .service-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    border-left: 4px solid transparent;
+    transition: border-color .2s;
+  }
+  .service-item:nth-child(1) { border-left-color: #4a90d9; }
+  .service-item:nth-child(2) { border-left-color: var(--gold); }
+  .service-item:nth-child(3) { border-left-color: #5cb85c; }
+  .service-item:nth-child(4) { border-left-color: #e67e22; }
+
+  .service-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .service-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .service-desc {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--white); }
+
+  .contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity .2s, transform .1s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+  }
+  .contact-btn:active { transform: scale(.98); opacity: .85; }
+
+  .btn-phone {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+  }
+  .btn-email {
+    background: linear-gradient(135deg, #2c6e49 0%, #40916c 100%);
+    color: var(--white);
+  }
+  .btn-kakao {
+    background: linear-gradient(135deg, #f9e000 0%, #f0c900 100%);
+    color: #3c1e1e;
+  }
+  .btn-icon { font-size: 20px; width: 28px; text-align: center; }
+  .btn-text { display: flex; flex-direction: column; }
+  .btn-label { font-size: 11px; opacity: .75; margin-bottom: 1px; }
+  .btn-value { font-weight: 700; font-size: 14px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="photo-wrap">
+    <!-- 첨부 사진을 실제 앱에선 여기에 연결하세요 -->
+    <img src="./profile.jpg" id="profileImg" alt="심규선 프로필"
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27120%27 height=%27120%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 fill=%27%231a3056%27/%3E%3Ctext x=%2750%25%27 y=%2755%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 font-size=%2742%27 fill=%27%23c9a84c%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E심%3C/text%3E%3C/svg%3E'">
+  </div>
+  <div class="hero-badge">🎓 시니어 AI 컨설턴트 과정 수료</div>
+  <h1><span>심규선</span></h1>
+  <p class="hero-title">AI 경영 컨설턴트 &nbsp;|&nbsp; Senior AI Consultant</p>
+  <div class="hero-tagline">
+    <p>💡 경영 애로, AI로 해결해 드립니다</p>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section class="section career-section fade-in">
+  <div class="section-title">경력 하이라이트</div>
+  <div class="career-grid">
+    <div class="career-card gold-top">
+      <div class="icon">🏆</div>
+      <div class="label">핵심 성과</div>
+      <div class="value">3개사<br>IPO 상장 성공</div>
+    </div>
+    <div class="career-card">
+      <div class="icon">💼</div>
+      <div class="label">직책</div>
+      <div class="value">상장회사<br>CFO · 기획관리임원</div>
+    </div>
+    <div class="career-card">
+      <div class="icon">📊</div>
+      <div class="label">전문 분야</div>
+      <div class="value">재무 · 투자<br>경영기획 전략</div>
+    </div>
+    <div class="career-card gold-top">
+      <div class="icon">🤖</div>
+      <div class="label">현재</div>
+      <div class="value">AI 컨설팅<br>전문가 과정</div>
+    </div>
+  </div>
+  <div class="career-desc">
+    상장회사 <strong>CFO 및 기획관리 임원</strong>으로 쌓은 현장 경험과,
+    <strong>3개 기업의 IPO 상장</strong>을 이끈 전략적 안목을 바탕으로,
+    이제는 <strong>AI 기술</strong>을 접목해 중소기업·소상공인의
+    경영 문제를 실질적으로 해결합니다.
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section fade-in">
+  <div class="section-title">컨설팅 서비스</div>
+  <div class="service-list">
+    <div class="service-item">
+      <div class="service-icon">🔍</div>
+      <div>
+        <div class="service-name">AI 경영 진단</div>
+        <div class="service-desc">현재 업무 프로세스를 분석하고 AI로 개선 가능한 포인트를 찾아드립니다.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">💡</div>
+      <div>
+        <div class="service-name">AI 도구 도입 컨설팅</div>
+        <div class="service-desc">업종과 규모에 맞는 최적의 AI 솔루션을 선별하고 도입을 지원합니다.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">📈</div>
+      <div>
+        <div class="service-name">경영 데이터 분석</div>
+        <div class="service-desc">매출·비용·고객 데이터를 AI로 분석해 의사결정에 활용하도록 돕습니다.</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🎯</div>
+      <div>
+        <div class="service-name">맞춤형 AI 실무 교육</div>
+        <div class="service-desc">대표자·직원이 AI 도구를 직접 활용할 수 있도록 1:1 실습 교육을 제공합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section fade-in">
+  <div class="section-title">연락하기</div>
+  <div class="contact-list">
+    <a href="tel:010-2245-9507" class="contact-btn btn-phone">
+      <span class="btn-icon">📞</span>
+      <span class="btn-text">
+        <span class="btn-label">전화 문의</span>
+        <span class="btn-value">010-2245-9507</span>
+      </span>
+    </a>
+    <a href="mailto:goodsonsim@gmail.com" class="contact-btn btn-email">
+      <span class="btn-icon">✉️</span>
+      <span class="btn-text">
+        <span class="btn-label">이메일 문의</span>
+        <span class="btn-value">goodsonsim@gmail.com</span>
+      </span>
+    </a>
+    <a href="https://open.kakao.com/o/s3GyST2f" target="_blank" class="contact-btn btn-kakao" id="kakaoBtn">
+      <span class="btn-icon">💬</span>
+      <span class="btn-text">
+        <span class="btn-label">카카오톡 문의</span>
+        <span class="btn-value">카카오로 연락하기</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p><span>심규선</span> AI 경영 컨설턴트</p>
+  <p>중소기업 · 소상공인 AI 경영 컨설팅 전문</p>
+  <p style="margin-top:8px">© 2026 Sim Gyuseon. All rights reserved.</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const els = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+
+  // Kakao - 링크 직접 연결됨 (별도 스크립트 불필요)
+
+  // 실제 프로필 사진 로드 시도 (파일 업로드 지원 환경)
+  // 현재는 이니셜 placeholder 표시 중
+</script>
+</body>
+</html>
