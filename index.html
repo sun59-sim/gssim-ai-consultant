@@ -8,8 +8,13 @@
 <style>
   :root {
     --navy: #1F3864;
+    --navy-deep: #142845;
+    --navy-light: #2f4f86;
+    --gold: #c9a84c;
+    --gold-light: #ecd089;
     --white: #ffffff;
     --gray: #333333;
+    --gray-soft: #f4f6fa;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,7 +22,7 @@
   html, body {
     font-family: 'Noto Sans KR', sans-serif;
     color: var(--gray);
-    background: var(--white);
+    background: var(--gray-soft);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -25,65 +30,134 @@
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
+    background: var(--white);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 40px rgba(0,0,0,0.06);
   }
 
   /* ── HEADER ── */
   header {
-    background: var(--navy);
+    background: linear-gradient(150deg, var(--navy) 0%, var(--navy-deep) 100%);
     color: var(--white);
     text-align: center;
-    padding: 36px 20px 28px;
+    padding: 46px 24px 38px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; top: -60px; right: -50px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  header::after {
+    content: '';
+    position: absolute; bottom: -70px; left: -50px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.10);
   }
 
-  .profile-photo {
-    width: 110px;
-    height: 110px;
+  .photo-ring {
+    width: 136px;
+    height: 136px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--white);
-    margin-bottom: 18px;
+    margin: 0 auto 20px;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+    position: relative;
+    z-index: 1;
+  }
+  .photo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
     background: var(--white);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 
   .name-line {
-    font-size: clamp(0.95rem, 4.6vw, 1.5rem);
-    font-weight: 700;
-    line-height: 1.4;
+    font-size: clamp(1rem, 4.8vw, 1.55rem);
+    font-weight: 900;
+    line-height: 1.45;
     white-space: nowrap;
     margin-bottom: 14px;
     letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
   }
 
   .intro {
     font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--white);
-    opacity: 0.92;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.85);
     word-break: keep-all;
+    position: relative;
+    z-index: 1;
   }
 
   /* ── CAREER ── */
   .career-section {
     flex: 1;
-    padding: 28px 20px;
+    padding: 36px 22px 8px;
   }
 
   .section-label {
-    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--navy);
-    letter-spacing: 0.08em;
-    margin-bottom: 14px;
+    letter-spacing: 0.18em;
+    margin-bottom: 18px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
   }
 
   .career-card {
-    border: 1px solid var(--navy);
-    border-left: 4px solid var(--navy);
-    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--white);
+    border: 1px solid rgba(31,56,100,0.08);
+    border-radius: 14px;
     padding: 16px 18px;
     margin-bottom: 12px;
+    box-shadow: 0 3px 14px rgba(31,56,100,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .career-card:active {
+    transform: scale(0.99);
+  }
+
+  .career-icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 3px 8px rgba(31,56,100,0.25);
   }
 
   .career-card p {
@@ -96,34 +170,45 @@
 
   /* ── CONTACT ── */
   .contact-section {
-    padding: 0 20px 32px;
+    padding: 30px 22px 32px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 
   .btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
-    text-align: center;
-    padding: 15px;
-    border-radius: 6px;
+    padding: 16px;
+    border-radius: 50px;
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
-    border: 2px solid var(--navy);
+    border: none;
     cursor: pointer;
     font-family: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn:active {
+    transform: scale(0.97);
   }
 
   .btn-email {
-    background: var(--navy);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     color: var(--white);
+    box-shadow: 0 8px 20px rgba(31,56,100,0.28);
   }
-
   .btn-phone {
     background: var(--white);
     color: var(--navy);
+    border: 2px solid var(--navy);
+  }
+  .btn-icon {
+    font-size: 1.2rem;
+    line-height: 1;
   }
 
   /* ── TOAST ── */
@@ -135,13 +220,14 @@
     background: var(--navy);
     color: var(--white);
     padding: 12px 22px;
-    border-radius: 6px;
+    border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 500;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s, transform 0.25s;
     white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
   }
   .toast.show {
     opacity: 1;
@@ -151,10 +237,22 @@
   /* ── FOOTER ── */
   footer {
     text-align: center;
-    padding: 14px 20px 24px;
+    padding: 18px 20px 28px;
     font-size: 0.75rem;
     color: var(--gray);
-    opacity: 0.6;
+    opacity: 0.55;
+    border-top: 1px solid var(--gray-soft);
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
@@ -163,8 +261,12 @@
 
   <!-- HEADER -->
   <header>
-    <img class="profile-photo" id="profileImg" src="./profile.jpg" alt="심규선"
-         onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27110%27 height=%27110%27%3E%3Crect width=%27110%27 height=%27110%27 fill=%27%231F3864%27/%3E%3Ctext x=%2755%27 y=%2762%27 font-size=%2740%27 fill=%27%23ffffff%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E심%3C/text%3E%3C/svg%3E'">
+    <div class="photo-ring">
+      <div class="photo-inner">
+        <img class="profile-photo" id="profileImg" src="./profile.jpg" alt="심규선"
+             onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27136%27 height=%27136%27%3E%3Crect width=%27136%27 height=%27136%27 fill=%27%231F3864%27/%3E%3Ctext x=%2768%27 y=%2778%27 font-size=%2748%27 fill=%27%23ecd089%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-weight=%27bold%27%3E심%3C/text%3E%3C/svg%3E'">
+      </div>
+    </div>
     <div class="name-line">심규선 · AI 경영 컨설턴트 · (주)상상우리</div>
     <p class="intro">
       상장기업 실무 경력과 AI 기술을 결합하여<br>
@@ -176,21 +278,28 @@
   <!-- CAREER -->
   <section class="career-section">
     <div class="section-label">CAREER</div>
-    <div class="career-card">
+    <div class="career-card fade-in">
+      <div class="career-icon">💼</div>
       <p>상장기업 37년 CFO, 기획관리 임원</p>
     </div>
-    <div class="career-card">
+    <div class="career-card fade-in">
+      <div class="career-icon">🏆</div>
       <p>3개 회사 IPO, 주식상장 성공</p>
     </div>
-    <div class="career-card">
+    <div class="career-card fade-in">
+      <div class="career-icon">📊</div>
       <p>사업계획, 투자분석, 경영진단</p>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact-section">
-    <a href="mailto:goodsonsim@gmail.com" class="btn btn-email">이메일 보내기</a>
-    <button class="btn btn-phone" onclick="copyPhone()">전화 걸기</button>
+    <a href="mailto:goodsonsim@gmail.com" class="btn btn-email">
+      <span class="btn-icon">📧</span> 이메일 보내기
+    </a>
+    <button class="btn btn-phone" onclick="copyPhone()">
+      <span class="btn-icon">📞</span> 전화 걸기
+    </button>
   </section>
 
   <footer>
@@ -236,6 +345,13 @@
     }
     document.body.removeChild(el);
   }
+
+  // fade-in on scroll
+  const els = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
